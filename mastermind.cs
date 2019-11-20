@@ -17,8 +17,16 @@ class Mastermind {
     
     while (attempt < 10){
         
-        Console.WriteLine("Try to guess my 4 digit code (Numbers between 1 and 6) Attempt: " + (attempt + 1));
-        string guess = Console.ReadLine().Replace(" ","");
+        int guessLength = 0;
+        string guess = "";
+        while (guessLength != 4){
+            Console.WriteLine("Try to guess my 4 digit code (Numbers between 1 and 6) Attempt: " + (attempt + 1));
+            guess = Console.ReadLine().Replace(" ","");
+            guessLength = guess.Length;
+            if (guessLength != 4){
+                Console.WriteLine("Please enter 4 digits between 1 and 6");
+            }
+        }
 
         int[] guessArray = new int[4];
         for (int i = 0; i < guess.Length; i++){
@@ -51,7 +59,8 @@ class Mastermind {
 
     }
 
-    Console.WriteLine("You have run out of guesses, the code was " + code[0] + code[1] + code[2] + code[3]);
-    
+    if (attempt == 10){
+        Console.WriteLine("You have run out of guesses, the code was " + code[0] + code[1] + code[2] + code[3]);
+    }
   }
 }
